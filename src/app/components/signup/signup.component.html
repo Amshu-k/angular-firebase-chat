@@ -1,16 +1,16 @@
 <h2>Register</h2>
-<form #signupForm="ngForm">
+<form [formGroup]="signupForm" (ngSubmit)="signUp()">
   <div class="form-group">
     <label for="email">Email address</label>
-    <input type="email" class="form-control" id="email" [(ngModel)]="email" placeholder="name@example.com" name="email">
+    <input type="email" class="form-control" id="email" placeholder="name@example.com" formControlName="email">
   </div>
   <div class="form-group">
     <label for="password">Password</label>
-    <input type="password" class="form-control" id="password" [(ngModel)]="password" name="password">
+    <input type="password" class="form-control" id="password" formControlName="password">
   </div>
   <div class="form-group">
-    <label for="displayName">Display Name</label>
-    <input type="text" class="form-control" id="displayName" [(ngModel)]="displayName" name="email">
+    <label for="displayName">Display name</label>
+    <input type="text" class="form-control" id="displayName" formControlName="displayName">
   </div>
-  <button type="submit" class="btn btn-danger" (click)="signUp()">Sign up</button>
+  <button type="submit" class="btn btn-danger" [disabled]>Sign up</button>
 </form>

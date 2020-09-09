@@ -16,6 +16,7 @@ import { AuthService } from "./services/auth.service";
 import { ChatService } from "./services/chat.service";
 import { FormsModule } from "@angular/forms";
 import { environment } from 'src/environments/environment';
+import { ReactiveFormsModule } from "@angular/forms";
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
@@ -38,8 +39,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-
-
+    ReactiveFormsModule,
     AngularFireAuthModule,
     AngularFireDatabaseModule,
     AngularFireModule.initializeApp(environment.firebaseConfig)

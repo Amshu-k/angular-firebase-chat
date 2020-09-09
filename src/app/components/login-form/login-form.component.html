@@ -1,12 +1,12 @@
 <h2>Login</h2>
-<form>
+<form [formGroup]="loginForm" (ngSubmit)="login()">
   <div class="form-group">
     <label for="email">Email address</label>
-    <input type="email" class="form-control" id="email" aria-describedby="emailHelp" [(ngModel)]="email" name="email">
+    <input type="email" class="form-control" id="email" aria-describedby="emailHelp" formControlName="email">
   </div>
   <div class="form-group">
     <label for="password">Password</label>
-    <input type="password" class="form-control" id="password" [(ngModel)]="password" name="password">
+    <input type="password" class="form-control" id="password" formControlName="password">
   </div>
-  <button type="submit" class="btn btn-primary" (click)="login()">Login</button>
+  <button type="submit" class="btn btn-primary" [disabled]="!loginForm.get('email').valid || !loginForm.get('password').valid">Login</button>
 </form>
