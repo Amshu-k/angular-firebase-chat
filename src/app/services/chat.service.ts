@@ -18,11 +18,10 @@ export class ChatService {
 
   constructor(private db: AngularFireDatabase, private angularFireAuth: AngularFireAuth) {
     this.angularFireAuth.authState.subscribe(auth => {
-      if (!auth) {
+      if (auth) {
         this.user = auth;
       }
       this.getUser().valueChanges().subscribe(value => {
-        console.log(value)
         this.username = value["displayName"]
       })
     })
@@ -30,13 +29,13 @@ export class ChatService {
 
   getUser() {
     const currentUserId = this.user.uid;
-    const path = `/users${currentUserId}`;
+    const path = `/users/${currentUserId}`;
     return this.db.object(path);
   }
 
   getAllUsers() {
     const path = '/users';
-    return this.db.list('/users');
+    return this.db.list(path);
   }
 
   sendMessage(message: string) {

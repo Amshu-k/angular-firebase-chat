@@ -18,33 +18,31 @@ export class AuthService {
   }
 
   get currentUserId(): string {
-    // return this.authState ? this.authState.uid : '';
-    console.log(this.authState);
-    
-    return this.authState !== null ? this.authState.uid : '';
+    return this.authState ? this.authState.uid : '';
   }
 
   signUp(email: string, password: string, displayName: string) {
     return this.afAuth.createUserWithEmailAndPassword(email, password)
-      .then((user) => {
-        this.authState = user;
+      .then((res) => {
+        this.authState = res.user;
         const status = 'online';
         this.setUserData(email, displayName, status);
-      }).catch(error => {console.log('bye');
-      ;console.log(error)});
+      }).catch(error => {
+        console.log(error)
+      });
   }
 
   login(email: string, password: string) {
     return this.afAuth.signInWithEmailAndPassword(email, password)
-      .then((user) => {
-        this.authState = user;
+      .then((res) => {        
+        this.authState = res.user;
         this.setUserStatus('online');
         this.router.navigate(['chat']);
       });
   }
 
   setUserData(email: string, displayName: string, status: string): void {
-    const path = `/users/${this.currentUserId}`;
+    const path = `users/${this.currentUserId}`;
     const data = {
       email: email,
       displayName: displayName,
@@ -52,10 +50,10 @@ export class AuthService {
     };
 
     this.db.object(path).update(data)
-      .catch(error => {console.log('hello');console.log(error)});
+      .catch(error => { console.log(error) });
   }
 
-  setUserStatus(status: string): void {
+  setUserStatus(status: string): void {    
     const path = `users/${this.currentUserId}`;
 
     const data = {
@@ -71,6 +69,7 @@ export class AuthService {
   }
 
   logout() {
+    this.setUserStatus('offline')
     this.afAuth.signOut();
     this.router.navigate(['login']);
   }
