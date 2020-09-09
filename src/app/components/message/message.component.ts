@@ -14,8 +14,9 @@ export class MessageComponent implements OnInit {
   email: string;
   username: string;
   messageContent: string;
-  timeStamp: Date = new Date()
-  //
+  timeStamp: string
+  isOwnMessage: boolean
+
   constructor() { }
 
   ngOnInit(): void {

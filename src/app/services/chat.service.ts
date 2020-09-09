@@ -11,30 +11,42 @@ import { ChatMessage } from "../models/chat-message.model";
 })
 
 export class ChatService {
-  user: any
+  user: firebase.User;
   chatMessages: AngularFireList<ChatMessage>;
   chatMessage: ChatMessage
   username: string
 
   constructor(private db: AngularFireDatabase, private angularFireAuth: AngularFireAuth) {
-    // this.angularFireAuth.authState.subscribe(auth => {
-    //   if (!auth) {
-    //     this.user = auth;
-    //   }
-    // })
+    this.angularFireAuth.authState.subscribe(auth => {
+      if (!auth) {
+        this.user = auth;
+      }
+      this.getUser().valueChanges().subscribe(value => {
+        console.log(value)
+        this.username = value["displayName"]
+      })
+    })
+  }
+
+  getUser() {
+    const currentUserId = this.user.uid;
+    const path = `/users${currentUserId}`;
+    return this.db.object(path);
+  }
+
+  getAllUsers() {
+    const path = '/users';
+    return this.db.list('/users');
   }
 
   sendMessage(message: string) {
     const timeStamp = this.getTimeStamp();
-    // const email = this.user.email;
-    const email = 'test@test.com'
+    const email = this.user.email;
     this.chatMessages = this.getMessages();
-    console.log(this.chatMessages)
     this.chatMessages.push({
       message: message,
-      timeStamp: new Date(),
-      // username: this.username,
-      username: "AmshuPrachi",
+      timeStamp: timeStamp,
+      username: this.username,
       email: email
     })
   }
@@ -43,17 +55,11 @@ export class ChatService {
     const now = new Date();
     const date = `${now.getUTCFullYear()}/${(now.getUTCMonth() + 1)}/${now.getUTCDate()}`;
     const time = `${now.getUTCHours()}:${now.getUTCMinutes()}:${now.getUTCDate()}`;
-    return Date()
+    return date + '-' + time
   }
 
   getMessages(): AngularFireList<ChatMessage> {
-    return this.db.list('messages',  ref => ref.orderByKey().limitToLast(25));
+    return this.db.list('messages', ref => ref.orderByKey().limitToLast(25));
   }
-
-  // {
-  //   query: {
-  //     limitToLast: 25,
-  //     orderByKey: true
-  //   }
 
 }
