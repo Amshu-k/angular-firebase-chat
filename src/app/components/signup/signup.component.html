@@ -12,5 +12,5 @@
     <label for="displayName">Display name</label>
     <input type="text" class="form-control" id="displayName" formControlName="displayName">
   </div>
-  <button type="submit" class="btn btn-danger" [disabled]>Sign up</button>
+  <button type="submit" class="btn btn-danger" [disabled]="!signupForm.get('email').valid || !signupForm.get('password').valid">Sign up</button>
 </form>
