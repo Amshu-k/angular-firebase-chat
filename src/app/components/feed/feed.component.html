@@ -1,7 +1,5 @@
 <div class="feed">
-    <div class="col-md-3">
-        <div *ngFor="let message of feed | async" class="message">
-            <app-message [message]=message></app-message>
-        </div>
+    <div *ngFor="let message of feed | async" class="message">
+        <app-message [message]=message></app-message>
     </div>
 </div>

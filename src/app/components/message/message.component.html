@@ -1,9 +1,9 @@
-<div class="messageContainer">
+<div class="messageContainer" [ngClass]="{'messageContainer--is-own-sender': email === loggedInUserEmail}">
     <div class="messageData">
-        <span class="sender">
+        <span class="sender" [ngClass]="{'sender--own-sender': email === loggedInUserEmail}">
             {{username}}
         </span>
-        <span class="timestamp">
+        <span class="timestamp"  [ngClass]="{'timestamp--is-own-sender': email === loggedInUserEmail}">
             {{timeStamp | date: 'medium'}}
         </span>
     </div>

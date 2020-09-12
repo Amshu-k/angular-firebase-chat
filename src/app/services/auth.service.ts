@@ -17,8 +17,12 @@ export class AuthService {
     this.user = afAuth.authState
   }
 
-  get currentUserId(): string {
+  get currentUserId(): string {    
     return this.authState ? this.authState.uid : '';
+  }
+
+  getCurrentUserLoggedIn() {
+    return this.authState
   }
 
   signUp(email: string, password: string, displayName: string) {

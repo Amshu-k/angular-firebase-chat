@@ -16,14 +16,17 @@ export class MessageComponent implements OnInit {
   messageContent: string;
   timeStamp: string
   isOwnMessage: boolean
+  loggedInUserEmail: string;
 
-  constructor() { }
+  constructor(private auth: AuthService) { }
 
   ngOnInit(): void {
     this.messageContent = this.message.message
     this.timeStamp = this.message.timeStamp
     this.email = this.message.email
-    this.username = this.message.username
+    this.username = this.message.username    
+    this.loggedInUserEmail = this.auth.getCurrentUserLoggedIn() ? this.auth.getCurrentUserLoggedIn().email : undefined;
+    console.log(this.loggedInUserEmail);
   }
 
 }

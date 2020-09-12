@@ -1,12 +1,15 @@
-<h2>Login</h2>
-<form [formGroup]="loginForm" (ngSubmit)="login()">
-  <div class="form-group">
-    <label for="email">Email address</label>
-    <input type="email" class="form-control" id="email" aria-describedby="emailHelp" formControlName="email">
-  </div>
-  <div class="form-group">
-    <label for="password">Password</label>
-    <input type="password" class="form-control" id="password" formControlName="password">
-  </div>
-  <button type="submit" class="btn btn-primary" [disabled]="!loginForm.get('email').valid || !loginForm.get('password').valid">Login</button>
-</form>
+<div class="margin">
+  <h2 class="font-color">Login</h2>
+  <form [formGroup]="loginForm" (ngSubmit)="login()">
+    <div class="form-group">
+      <label for="email" class="font-color">Email address</label>
+      <input type="email" class="form-control" id="email" aria-describedby="emailHelp" formControlName="email">
+    </div>
+    <div class="form-group">
+      <label for="password" class="font-color">Password</label>
+      <input type="password" class="form-control" id="password" formControlName="password">
+    </div>
+    <button type="submit" class="btn btn-primary"
+      [disabled]="!loginForm.get('email').valid || !loginForm.get('password').valid">Login</button>
+  </form>
+</div>
