@@ -1,7 +1,16 @@
-<div class="userItem">
+<!-- <div class="userItem">
     <span class="status" [ngClass]=(user.status)>
     </span>
     <span class="userName">
       {{user['displayName']}}
     </span>
+  </div> -->
+
+<div class="user user--onhover">
+  <img src="" alt="photo" class="profile-image">
+  <div class="text">
+    <h6>{{user['displayName']}}</h6>
+    <p>Last Seen at: </p>
   </div>
+</div>
+<hr>
