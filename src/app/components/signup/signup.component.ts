@@ -31,8 +31,20 @@ export class SignupComponent implements OnInit {
     const displayName = this.signupForm.value.displayName;
     this.authService.signUp(email, password, displayName)
       .then(resolve => this.router.navigate(['/chat']))
-      .catch(error => { this.errorMsg = error.message; console.log(this.errorMsg);
-       })
+      .catch(error => {
+        this.errorMsg = error.message; console.log(this.errorMsg);
+      })
+  }
+
+  isInvalid(field: string) {
+    switch (field) {
+      case 'email':
+        return this.signupForm.get('email').touched && this.signupForm.get('email').invalid;
+      case 'password':
+        return this.signupForm.get('password').touched && this.signupForm.get('password').invalid;
+      case 'displayName':
+        return this.signupForm.get('displayName').touched && this.signupForm.get('displayName').invalid;
+    }
   }
 
 }

@@ -26,7 +26,6 @@ export class MessageComponent implements OnInit {
     this.email = this.message.email
     this.username = this.message.username    
     this.loggedInUserEmail = this.auth.getCurrentUserLoggedIn() ? this.auth.getCurrentUserLoggedIn().email : undefined;
-    console.log(this.loggedInUserEmail);
   }
 
 }

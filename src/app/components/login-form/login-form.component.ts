@@ -25,4 +25,13 @@ export class LoginFormComponent implements OnInit {
     this.authService.login(this.loginForm.value.email, this.loginForm.value.password)
       .catch(error => this.errorMsg = error.message);
   }
+
+  isInvalid(field: string) {
+    switch (field) {
+      case 'email':
+        return this.loginForm.get('email').touched && this.loginForm.get('email').invalid;
+      case 'password':
+        return this.loginForm.get('password').touched && this.loginForm.get('password').invalid;
+    }
+  }
 }

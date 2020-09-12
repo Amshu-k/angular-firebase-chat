@@ -15,7 +15,6 @@ export class UserItemComponent {
 
   ngOnInit() {
     if (this.user) {
-      console.log(this.user)
     }
     
   }

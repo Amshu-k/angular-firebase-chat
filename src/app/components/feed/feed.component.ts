@@ -10,7 +10,6 @@ import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
   styleUrls: ['./feed.component.scss']
 })
 export class FeedComponent implements OnInit, OnChanges {
-  // feed: AngularFireList<ChatMessage>
   feed: object
   constructor(private chatService: ChatService) { }
 
