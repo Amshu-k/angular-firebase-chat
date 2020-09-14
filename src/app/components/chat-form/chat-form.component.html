@@ -1,6 +1,7 @@
-<input 
-    class="chatInput"
-    [(ngModel)]="message"
-    (keydown)="handleSubmit($event)"
-/>
-<button class="chatButton" (click)="send()">Send</button>
+<div class="row">
+    <div class="input-group input-group-small chat-input">
+        <input type="text" class="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm"
+            [(ngModel)]="message" (keydown)="handleSubmit($event)">
+    </div>
+    <button type="button" class="btn btn-dark" (click)="send()">Send</button>
+</div>
