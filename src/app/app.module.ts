@@ -21,6 +21,10 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFireAuthModule } from '@angular/fire/auth';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { ModalComponent } from './components/modal/modal.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +37,8 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
     NavbarComponent,
     UserListComponent,
     UserItemComponent,
-    ChatFormComponent
+    ChatFormComponent,
+    ModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -42,7 +47,10 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
     ReactiveFormsModule,
     AngularFireAuthModule,
     AngularFireDatabaseModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig)
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    BrowserAnimationsModule,
+    TooltipModule.forRoot(),
+    ModalModule.forRoot(),
   ],
   providers: [AuthService, ChatService],
   bootstrap: [AppComponent]

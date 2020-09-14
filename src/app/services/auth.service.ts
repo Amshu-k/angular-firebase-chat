@@ -31,9 +31,8 @@ export class AuthService {
         this.authState = res.user;
         const status = 'online';
         this.setUserData(email, displayName, status);
-      }).catch(error => {
-        console.log(error)
-      });
+        this.router.navigate(['chat']);
+      })
   }
 
   login(email: string, password: string) {
