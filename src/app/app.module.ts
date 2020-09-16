@@ -25,6 +25,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { ModalComponent } from './components/modal/modal.component';
+import { CollapseModule } from 'ngx-bootstrap/collapse';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { AuthGuard } from "./auth-guard.service";
 
 @NgModule({
   declarations: [
@@ -39,6 +42,7 @@ import { ModalComponent } from './components/modal/modal.component';
     UserItemComponent,
     ChatFormComponent,
     ModalComponent,
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,
@@ -51,8 +55,9 @@ import { ModalComponent } from './components/modal/modal.component';
     BrowserAnimationsModule,
     TooltipModule.forRoot(),
     ModalModule.forRoot(),
+    CollapseModule.forRoot()
   ],
-  providers: [AuthService, ChatService],
+  providers: [AuthService, ChatService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

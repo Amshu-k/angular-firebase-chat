@@ -17,7 +17,7 @@ export class NavbarComponent implements OnInit {
   ngOnInit() {
     this.user = this.authService.authUser();
     this.user.subscribe(user => {
-      if (user) {        
+      if (user) {
         this.username = user.email;
       }
     });
@@ -25,5 +25,11 @@ export class NavbarComponent implements OnInit {
 
   logout() {
     this.authService.logout();
+  }
+
+  isCollapsed: boolean = true;
+
+  toggleCollapse(): void {
+    this.isCollapsed = !this.isCollapsed;
   }
 }

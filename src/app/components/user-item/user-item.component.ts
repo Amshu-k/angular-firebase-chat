@@ -14,8 +14,8 @@ export class UserItemComponent {
   constructor() { }
 
   ngOnInit() {
-    if (this.user) {
-    }
+    console.log(this.user.status);
+    
     
   }
 
